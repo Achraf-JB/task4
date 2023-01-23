@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="task4.css">
+</head>
+<body>
+    <h1>Interface Corona</h1>
+    <input type="text"> <br>
+    <button>ajouter</button>
+    <div class="div1">
+        <h4>Enregistrées</h4>
+         <ul  id ="ul1">
+         </ul>
+    </div>
+    <div class="div2">
+        <h4>Vaccinées</h4>
+        <ul id ="ul2">
+        </ul>
+    </div>
+  <script>
+    let liste1 = document.querySelector("#ul1")
+    let liste2 = document.querySelector("#ul2")
+    let input = document.querySelector("input")
+    let button = document.querySelector("button")
+      button.addEventListener("click",ajouter)
+
+     function ajouter() {
+        if (isInputEmpty()) {
+          alert("Input empty, please type something !");
+          return;
+        }
+        let li = document.createElement("li");
+        let i=0;
+        li.id = "do-"+i;
+        i++;
+        let span = document.createElement("span");
+        let button = document.createElement("button");
+        button.addEventListener("click", supprimer);
+        button.innerText = "X";
+        span.innerHTML = input.value;
+        li.appendChild(span);
+        li.appendChild(button);
+        liste1.appendChild(li);
+        input.value = "";
+        }
+
+     function isInputEmpty() {
+        if (input.value == "") {
+          return true;
+        }
+        return false;
+      }
+      function supprimer(e) {
+        let id = e.target.parentElement.id;
+        let elementToDelete = document.getElementById(id);
+        elementToDelete.id = "li";
+        let X = elementToDelete.lastChild ;
+        X.id = "button1";
+        X.style.backgroundColor="red";
+        liste2.appendChild(elementToDelete);
+        elementToDelete.removeChildren();
+      }
+      let button1= document.querySelector("#button1");
+      button1.addEventListener("click", supprimer1);
+
+      function supprimer1(e){
+        let id1 = e.target.parentElement.id;
+        let elementasupp = document.getElementById(id1);
+        elementasupp.remove();
+      }
+  </script>
+</html>
